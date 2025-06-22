@@ -51,6 +51,24 @@ The application is now available at: [http://localhost:8080](http://localhost:80
 
 The API documentation is available at: [http://localhost:8080/api/doc](http://localhost:8080/api/doc)
 
+### Using the API Documentation (Swagger UI)
+To test protected endpoints (like creating tasks) in the documentation, you need to authorize your session.
+
+**Navigate to the documentation**: Open http://localhost:8080/api/doc.
+
+**Register a User**: Use the POST `/api/register` endpoint to create a new user.
+
+**Get JWT Token**: Use the POST `/api/login_check` endpoint with the credentials you just registered. Copy the token value from the response body.
+
+### Authorize:
+
+Click the green "Authorize" button at the top right of the page.
+
+In the popup window, paste your token into the "Value" field. Important: You must prefix the token with Bearer  (e.g., Bearer eyJ0eXAiOi...).
+
+Click "Authorize" in the popup, then "Close".
+
+Now you can use all the locked endpoints in the documentation.
 ### (Optional) Seed the Database
 
 To populate the database with test data (users and tasks), run the following command. **Warning**: This will completely purge all tables before adding new data.

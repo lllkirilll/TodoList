@@ -58,7 +58,7 @@ class Task
     {
         $this->subtasks = new ArrayCollection();
         $this->createdAt = new DateTimeImmutable();
-        $this->status = TaskStatus::TODO; // Default status
+        $this->status = TaskStatus::TODO;
     }
 
     public function getId(): ?int

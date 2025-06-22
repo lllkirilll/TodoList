@@ -31,9 +31,6 @@ class TaskController extends AbstractController
         private readonly ValidatorInterface $validator
     ) {}
 
-    /**
-     * Retrieves a list of top-level tasks for the current user.
-     */
     #[Route('', name: 'api_tasks_list', methods: ['GET'])]
     #[OA\Get(
         description: 'Retrieves a list of tasks for the authenticated user. You can filter by status, priority, title, and description. Sorting by multiple fields is also supported.',
@@ -62,10 +59,6 @@ class TaskController extends AbstractController
         return $this->json($responseDtos);
     }
 
-    /**
-     * Creates a new task.
-     * @throws ExceptionInterface
-     */
     #[Route('', name: 'api_tasks_create', methods: ['POST'])]
     #[OA\Response(response: 201, description: 'Task created successfully', content: new OA\JsonContent(ref: new Model(type: TaskResponse::class)))]
     #[OA\Response(response: 400, description: 'Invalid input')]
@@ -83,9 +76,6 @@ class TaskController extends AbstractController
         return $this->json(TaskResponse::fromEntity($task), Response::HTTP_CREATED);
     }
 
-    /**
-     * Retrieves a single task by its ID.
-     */
     #[Route('/{id}', name: 'api_tasks_show', methods: ['GET'])]
     #[OA\Response(response: 200, description: 'Returns the task details', content: new OA\JsonContent(ref: new Model(type: TaskResponse::class)))]
     #[OA\Response(response: 403, description: 'Access denied')]
@@ -99,10 +89,6 @@ class TaskController extends AbstractController
         return $this->json(TaskResponse::fromEntity($task));
     }
 
-    /**
-     * Updates an existing task.
-     * @throws ExceptionInterface
-     */
     #[Route('/{id}', name: 'api_tasks_update', methods: ['PUT'])]
     #[OA\Response(response: 200, description: 'Task updated successfully', content: new OA\JsonContent(ref: new Model(type: TaskResponse::class)))]
     #[OA\Response(response: 400, description: 'Invalid input')]
@@ -117,9 +103,6 @@ class TaskController extends AbstractController
         return $this->json(TaskResponse::fromEntity($updatedTask));
     }
 
-    /**
-     * Marks a task as complete.
-     */
     #[Route('/{id}/complete', name: 'api_tasks_complete', methods: ['POST'])]
     #[OA\Response(response: 200, description: 'Task marked as complete', content: new OA\JsonContent(ref: new Model(type: TaskResponse::class)))]
     #[OA\Response(response: 400, description: 'Cannot complete task with unfinished subtasks')]
@@ -131,9 +114,6 @@ class TaskController extends AbstractController
         return $this->json(TaskResponse::fromEntity($completedTask));
     }
 
-    /**
-     * Deletes a task.
-     */
     #[Route('/{id}', name: 'api_tasks_delete', methods: ['DELETE'])]
     #[OA\Response(response: 204, description: 'Task deleted successfully')]
     #[OA\Response(response: 400, description: 'Cannot delete a completed task')]

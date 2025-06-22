@@ -12,7 +12,6 @@ security:
             pattern: ^/(_(profiler|wdt)|css|images|js)/
             security: false
 
-        # This is the main firewall for our entire API
         main:
             pattern:   ^/api
             stateless: true
@@ -24,8 +23,7 @@ security:
             jwt: ~
 
     access_control:
-        # The order is important here.
-        - { path: ^/api/doc, roles: PUBLIC_ACCESS } # <-- ДОБАВЬТЕ ЭТУ СТРОКУ
+        - { path: ^/api/doc, roles: PUBLIC_ACCESS }
         - { path: ^/api/login_check, roles: PUBLIC_ACCESS }
         - { path: ^/api/register, roles: PUBLIC_ACCESS }
         - { path: ^/api, roles: IS_AUTHENTICATED_FULLY }

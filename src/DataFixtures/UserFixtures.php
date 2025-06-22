@@ -1,5 +1,4 @@
 <?php
-// src/DataFixtures/UserFixtures.php
 
 namespace App\DataFixtures;
 
